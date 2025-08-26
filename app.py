@@ -9,7 +9,7 @@ BOOT_UUID = None
 
 def seed_contact():
     uid = "datos"
-    avatar_path = app.static_url_path + "/img/perfiles/prov.jpg"
+    avatar_path = app.static_url_path + "/img/perfiles/persona.jpg"
     CONTACTS[uid] = {
         "uuid": uid,
         "avatar": avatar_path,
