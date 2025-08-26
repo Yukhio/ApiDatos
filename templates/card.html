@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ c.firstName }} {{ c.lastName }} — V-Card</title>
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="light" />
+    <!-- Fuente (opcional). Si no tienes internet en el server, la quitas y usará system UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 
@@ -15,11 +17,11 @@
             <header class="card__header">
                 <img class="avatar" src="{{ c.avatar }}" alt="Foto de {{ c.firstName }}" />
                 <div class="id">
-                    <div class="titleline">
+                    <!-- <div class="titleline">
                         <span class="role">{{ c.title }}</span>
                         <span class="dot">•</span>
                         <span class="org">{{ c.org }}</span>
-                    </div>
+                    </div> -->
                     <h1 class="name">{{ c.firstName }} {{ c.lastName }}</h1>
                 </div>
             </header>
@@ -28,18 +30,18 @@
                 <a class="row" href="tel:{{ c.phoneWork }}">
                     <div class="icon">📞</div>
                     <div class="info">
-                        <div class="label">Trabajo</div>
+                        <div class="label">Teléfono</div>
                         <div class="value">{{ c.phoneWork }}</div>
                     </div>
                 </a>
 
-                <a class="row" href="tel:{{ c.phoneMobile }}">
+                <!-- <a class="row" href="tel:{{ c.phoneMobile }}">
                     <div class="icon">📱</div>
                     <div class="info">
                         <div class="label">Celular</div>
                         <div class="value">{{ c.phoneMobile }}</div>
                     </div>
-                </a>
+                </a> -->
 
                 <a class="row" href="mailto:{{ c.email }}">
                     <div class="icon">✉️</div>

@@ -9,19 +9,18 @@ BOOT_UUID = None
 
 def seed_contact():
     uid = "datos"
-    # Evitamos usar url_for fuera de contexto; usamos la ruta pública /static
-    avatar_path = app.static_url_path + "/img/perfiles/Yukhio.png"
+    avatar_path = app.static_url_path + "/img/perfiles/prov.jpg"
     CONTACTS[uid] = {
         "uuid": uid,
-        "avatar": avatar_path,  # relativo; luego lo volvemos absoluto cuando haga falta
+        "avatar": avatar_path,
         "firstName": "JESÚS",
         "lastName": "ORTIZ ESTEVEZ",
         "title": "CO",
         "org": "COLLEGE",
-        "phoneWork": "+52 314 000 0000",
+        "phoneWork": "+52 314 116 2950",
         "phoneMobile": "+52 314 123 4567",
-        "email": "pruebamail@gmail.com",
-        "website": "https://alfapcsmax.com/",
+        "email": "joestevez@icollege.com.mx",
+        "website": "https://icollege.com.mx/",
         "street": "Calle 5 de Diciembre #5",
         "city": "Manzanillo",
         "state": "Colima",
@@ -30,7 +29,6 @@ def seed_contact():
     }
     return uid
 
-# Siembra al arrancar
 if not CONTACTS:
     BOOT_UUID = seed_contact()
 
@@ -45,7 +43,6 @@ def api_card(uid):
     card = CONTACTS.get(uid)
     if not card:
         abort(404)
-    # Construir URL absoluta para el avatar
     data = dict(card)
     data["avatar"] = request.url_root.rstrip("/") + card["avatar"]
     return jsonify(data)
@@ -61,7 +58,6 @@ def front_card(uid):
 def root():
     return render_template("welcome.html", demo_uuid="datos")
 
-# ========= vCard (.vcf) =========
 @app.get("/contact/<uid>/card.vcf")
 def vcard(uid):
     c = CONTACTS.get(uid)
