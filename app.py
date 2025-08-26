@@ -26,7 +26,7 @@ def seed_contact():
         "street": "Calle 5 de Diciembre #5",
         "city": "Manzanillo",
         "state": "Colima",
-        "zip": "28239",
+        "zip": "28250",
         "country": "México",
     }
     return uid
