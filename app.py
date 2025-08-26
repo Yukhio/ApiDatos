@@ -8,7 +8,7 @@ CONTACTS = {}
 BOOT_UUID = None
 
 def seed_contact():
-    uid = str(uuid4())
+    uid = "datos"
     # Evitamos usar url_for fuera de contexto; usamos la ruta pública /static
     avatar_path = app.static_url_path + "/img/perfiles/Yukhio.png"
     CONTACTS[uid] = {
@@ -59,7 +59,7 @@ def front_card(uid):
 
 @app.get("/")
 def root():
-    return render_template("welcome.html", demo_uuid=BOOT_UUID)
+    return render_template("welcome.html", demo_uuid="datos")
 
 # ========= vCard (.vcf) =========
 @app.get("/contact/<uid>/card.vcf")
@@ -68,23 +68,25 @@ def vcard(uid):
     if not c:
         abort(404)
 
-    # Hacemos absoluta la URL del avatar para la vCard
     avatar_abs = request.url_root.rstrip("/") + c["avatar"]
 
-    vcf = f"""BEGIN:VCARD
-    VERSION:3.0
-    N:{c['lastName']};{c['firstName']};;;
-    FN:{c['firstName']} {c['lastName']}
-    ORG:{c['org']}
-    TITLE:{c['title']}
-    TEL;TYPE=WORK,VOICE:{tel_compact(c.get('phoneWork',''))}
-    TEL;TYPE=CELL,VOICE:{tel_compact(c.get('phoneMobile',''))}
-    EMAIL;TYPE=INTERNET:{c['email']}
-    URL:{c['website']}
-    ADR;TYPE=WORK:;;{c['street']};{c['city']};{c['state']};{c['zip']};{c['country']}
-    PHOTO;VALUE=URI:{avatar_abs}
-    END:VCARD
-    """
+    lines = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        f"N:{c['lastName']};{c['firstName']};;;",
+        f"FN:{c['firstName']} {c['lastName']}",
+        f"ORG:{c['org']}",
+        f"TITLE:{c['title']}",
+        f"TEL;TYPE=WORK,VOICE:{tel_compact(c.get('phoneWork',''))}",
+        f"TEL;TYPE=CELL,VOICE:{tel_compact(c.get('phoneMobile',''))}",
+        f"EMAIL;TYPE=INTERNET:{c['email']}",
+        f"URL:{c['website']}",
+        f"ADR;TYPE=WORK:;;{c['street']};{c['city']};{c['state']};{c['zip']};{c['country']}",
+        f"PHOTO;VALUE=URI:{avatar_abs}",
+        "END:VCARD",
+    ]
+    vcf = "\r\n".join(lines) + "\r\n"  # CRLF para máxima compatibilidad
+
     filename = f"{c['firstName']}-{c['lastName']}.vcf".replace(" ", "_")
     return Response(
         vcf,

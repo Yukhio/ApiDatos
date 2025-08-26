@@ -73,12 +73,14 @@
             </section>
 
             <footer class="card__footer">
-                <a id="saveBtn" class="cta" href="{{ url_for('vcard', contact_id=c.uuid) }}" download="contact.vcf">
+                <a id="saveBtn" class="cta" href="{{ url_for('vcard', uid=c.uuid) }}"
+                    download="{{ c.firstName }}-{{ c.lastName }}.vcf">
                     <span class="cta__icon">💾</span>
                     Guardar contacto
                 </a>
                 <p class="hint">
-                    Si no se abre automáticamente, <a href="{{ url_for('vcard', contact_id=c.uuid) }}">toca aquí</a>.
+                    Si no se abre automáticamente,
+                    <a href="{{ url_for('vcard', uid=c.uuid) }}">toca aquí</a>.
                 </p>
             </footer>
         </article>
