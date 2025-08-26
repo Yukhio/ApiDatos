@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QR V Card Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <main class="wrap">
+        <h1>QR VCard</h1>
+        <p>Usa esta URL para el QR:</p>
+        <pre class="code">{{ request.url_root.rstrip('/') }}/{{ demo_uuid }}</pre>
+        <p>Endpoint JSON:</p>
+        <pre class="code">{{ request.url_root.rstrip('/') }}/api/v1/card/{{ demo_uuid }}</pre>
+        <a class="btn" href="/{{ demo_uuid }}">Ver tarjeta</a>
+    </main>
+</body>
+</html>

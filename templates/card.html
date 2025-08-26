@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ c.firstName }} {{ c.lastName }} — V‑Card</title>
+    <meta name="color-scheme" content="dark light" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <div class="shell">
+        <article class="card">
+            <header class="card__header">
+                <img class="avatar" src="{{ c.avatar }}" alt="Foto de {{ c.firstName }}" />
+                <div class="id">
+                    <div class="titleline">
+                        <span class="role">{{ c.title }}</span>
+                        <span class="org">{{ c.org }}</span>
+                    </div>
+                    <h1 class="name">{{ c.firstName }} {{ c.lastName }}</h1>
+                </div>
+            </header>
+            <section class="card__section">
+                <div class="row">
+                    <div class="icon">📞</div>
+                    <div class="info">
+                        <div class="label">Teléfono</div>
+                        <a class="value" href="tel:{{ c.phoneWork }}">{{ c.phoneWork }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="icon">📱</div>
+                    <div class="info">
+                        <div class="label">Celular</div>
+                        <a class="value" href="tel:{{ c.phoneMobile }}">{{ c.phoneMobile }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="icon">✉️</div>
+                    <div class="info">
+                        <div class="label">Correo</div>
+                        <a class="value" href="mailto:{{ c.email }}">{{ c.email }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="icon">🌐</div>
+                    <div class="info">
+                        <div class="label">Web</div>
+                        <a class="value" href="{{ c.website }}" target="_blank" rel="noopener">{{ c.website }}</a>
+                    </div>
+                </div>
+            </section>
+            <section class="card__section">
+                <div class="row">
+                    <div class="icon">📍</div>
+                    <div class="info">
+                        <div class="label">Dirección</div>
+                        <div class="value">
+                            {{ c.street }}<br />
+                            {{ c.zip }}<br />
+                            {{ c.city }}<br />
+                            {{ c.state }}<br />
+                            {{ c.country }}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </div>
+</body>
+</html>

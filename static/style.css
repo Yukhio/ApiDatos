@@ -1,0 +1,137 @@
+:root {
+    --bg: #0b0c10;
+    --panel: #12141b;
+    --panel-2: #171a23;
+    --text: #e9ecf1;
+    --muted: #9aa3b2;
+    --line: #232938;
+    --brand: #5aa8ff;
+    --radius: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+}
+
+.shell {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.card {
+    width: min(92vw, 900px);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .03);
+    overflow: hidden;
+}
+
+.card__header {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 28px 28px 18px;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border-bottom: 1px solid var(--line);
+}
+
+.avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #000;
+}
+
+.id .titleline {
+    display: flex;
+    gap: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.name {
+    margin: 6px 0 0;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.05;
+}
+
+.card__section {
+    padding: 18px 22px;
+    display: grid;
+    gap: 10px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    align-items: start;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+}
+
+.icon {
+    font-size: 20px;
+    filter: grayscale(.1);
+}
+
+.label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.value:hover {
+    text-decoration: underline;
+}
+
+.wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    color: var(--text);
+}
+
+.code {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    overflow: auto;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: var(--brand);
+    color: #001;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
