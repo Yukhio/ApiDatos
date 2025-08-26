@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ c.firstName }} {{ c.lastName }} — V‑Card</title>
+    <title>{{ c.firstName }} {{ c.lastName }} — V-Card</title>
     <meta name="color-scheme" content="dark light" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
@@ -16,42 +17,46 @@
                 <div class="id">
                     <div class="titleline">
                         <span class="role">{{ c.title }}</span>
+                        <span class="dot">•</span>
                         <span class="org">{{ c.org }}</span>
                     </div>
                     <h1 class="name">{{ c.firstName }} {{ c.lastName }}</h1>
                 </div>
             </header>
-            <section class="card__section">
-                <div class="row">
+
+            <section class="grid">
+                <a class="row" href="tel:{{ c.phoneWork }}">
                     <div class="icon">📞</div>
                     <div class="info">
-                        <div class="label">Teléfono</div>
-                        <a class="value" href="tel:{{ c.phoneWork }}">{{ c.phoneWork }}</a>
+                        <div class="label">Trabajo</div>
+                        <div class="value">{{ c.phoneWork }}</div>
                     </div>
-                </div>
-                <div class="row">
+                </a>
+
+                <a class="row" href="tel:{{ c.phoneMobile }}">
                     <div class="icon">📱</div>
                     <div class="info">
                         <div class="label">Celular</div>
-                        <a class="value" href="tel:{{ c.phoneMobile }}">{{ c.phoneMobile }}</a>
+                        <div class="value">{{ c.phoneMobile }}</div>
                     </div>
-                </div>
-                <div class="row">
+                </a>
+
+                <a class="row" href="mailto:{{ c.email }}">
                     <div class="icon">✉️</div>
                     <div class="info">
                         <div class="label">Correo</div>
-                        <a class="value" href="mailto:{{ c.email }}">{{ c.email }}</a>
+                        <div class="value">{{ c.email }}</div>
                     </div>
-                </div>
-                <div class="row">
+                </a>
+
+                <a class="row" href="{{ c.website }}" target="_blank" rel="noopener">
                     <div class="icon">🌐</div>
                     <div class="info">
                         <div class="label">Web</div>
-                        <a class="value" href="{{ c.website }}" target="_blank" rel="noopener">{{ c.website }}</a>
+                        <div class="value cut">{{ c.website }}</div>
                     </div>
-                </div>
-            </section>
-            <section class="card__section">
+                </a>
+
                 <div class="row">
                     <div class="icon">📍</div>
                     <div class="info">
@@ -66,7 +71,23 @@
                     </div>
                 </div>
             </section>
+
+            <footer class="card__footer">
+                <a id="saveBtn" class="cta" href="{{ url_for('vcard', contact_id=c.uuid) }}" download="contact.vcf">
+                    <span class="cta__icon">💾</span>
+                    Guardar contacto
+                </a>
+                <p class="hint">
+                    Si no se abre automáticamente, <a href="{{ url_for('vcard', contact_id=c.uuid) }}">toca aquí</a>.
+                </p>
+            </footer>
         </article>
     </div>
+
+    <script>
+        document.getElementById('saveBtn').addEventListener('click', function (e) {
+        });
+    </script>
 </body>
+
 </html>
