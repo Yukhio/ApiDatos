@@ -171,10 +171,6 @@ body {
     box-shadow: 0 8px 28px rgba(59, 130, 246, .35);
 }
 
-.cta__icon {
-    filter: brightness(0) invert(1)
-}
-
 .hint {
     margin: 0;
     font-size: 12px;
