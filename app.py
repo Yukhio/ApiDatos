@@ -86,11 +86,11 @@ def vcard(uid):
         f"N:{c['lastName']};{c['firstName']};;;",
         f"FN:{c['firstName']} {c['lastName']}",
         # NO incluir ORG ni TITLE
-        f"TEL;TYPE=WORK,VOICE:{tel_compact(c.get('phoneWork',''))}",
+        f"TEL;TYPE=VOICE;X-ABLabel=Teléfono:{tel_compact(c.get('phoneWork',''))}",
         # NO incluir CELULAR
-        f"EMAIL;TYPE=INTERNET:{c['email']}",
-        f"URL:{c['website']}",
-        f"ADR;TYPE=WORK:;;{c['street']};{c['city']};{c['state']};{c['zip']};{c['country']}",
+        f"EMAIL;TYPE=INTERNET;X-ABLabel=Correo:{c['email']}",
+        f"URL;X-ABLabel=WebSite:{c['website']}",
+        f"ADR;TYPE=HOME;X-ABLabel=Domicilio:;;{c['street']};{c['city']};{c['state']};{c['zip']};{c['country']}",
         photo_line,
         uid_line,
         rev_line,
